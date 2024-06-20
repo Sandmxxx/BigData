@@ -10,6 +10,7 @@ from pyecharts.charts import Funnel, Pie, Geo, WordCloud, Line, Bar  # 导入pye
 from pyecharts import options as opts   # 导入图表配置模块
 from pyecharts.globals import SymbolType   # 图片样式设置
 import numpy as np   # 数学函数库
+import openpyxl
 
 file = pd.read_excel(r'job_data_analyses.xlsx',sheet_name='Job') #读取Excel表格中sheet名为“job”的数据
 f = pd.DataFrame(file) # 将数据创建成二维表格，数据类型为DataFrame

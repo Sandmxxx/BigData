@@ -29,12 +29,11 @@ citys_code_map = {
 
 # 定义列名为全局变量
 columns = ['岗位名称', '城市', "薪资", "发布时间", "经验要求", '学历要求', '公司名称','公司类型', '公司规模','行业类型',
-           '岗位链接', '技能要求', '工作福利']
+           '岗位链接', '工作福利']
 
 
 Cookie1 = 'tfstk=fUmSKaZmY_f5PHc11zp4c2GnYzZe3XtaJ9wKIvIPpuEJRXGIKyQ8y2lQRSG3azr8a9sIGYlEzvk-RWHUi8Q89yIYM8yQeynUTD9QqmuPY7RuAvhafCRwbhkoEuqp_CrjgTCQvJKU9GQ_99q3vCR2bhkoEkcZw-OkPxpbURyLvzIRkKw_LkI8JgQAMS2LvWhLJSIYKRPdJzEdMUoHG-Y7wYOF4c_LtnJSFSsdfx28kx-gGMKrc81a6YBAvMnbFzmEo4rUjzuKIPmrhHs04AgYDJiHBwNQ52nzD0dvXr4KRXemoB_Q12HrS-n9LNVqc7lKVrpNfyrxbPE-uEAz8uwL2P0DKaPKJAi_4bRcv7usHjaZ0sSaXVcjAPEO4ssa1UahRwVRv-_khK_h8ct4b-jQHSv7y-2qbK9fNwfGvM7mYK_dzze03XpXh_1C.; NSC_ohjoy-bmjzvo-200-159=ffffffffc3a0d61645525d5f4f58455e445a4a…=uqTYYC/heN313BHLKBcpE4VSnTYlE7qpk7t=q44XmNw5nEUvcm4z81beVbW2U5WRwEmhjiYbFGNDRQDx4g2eDA7IRezA7j2DK+aI43UmzW7/lhQFDjfDBf0uixQi0YgwbibteA7GmTBHLK01m5N5Wx5D=1oqoqxnBtt9qDwtjFTFGPdqFWhSi2zzG5LuDt9e3B46TNLwnAb/F427nb7IOfq=OES0b7PTbUKaRwwiYuiBCWyz+LL3uL3xDKqKjDDLxD23ldoG3eD===; Hm_lvt_1370a11171bd6f2d9b1fe98951541941=1713862599,1713869135; acw_tc=ac11000117138691338915890e00dea35977a83bc06e50a21ad53a8f5612a8; acw_sc__v3=662791505f087a925f6a36f5a734bf72eb815d0b; Hm_lpvt_1370a11171bd6f2d9b1fe98951541941=1713869135'
-Cookie2 = 'guid=e8827e1fde555900b3c2ac84b573d6d4; nsearch=jobarea%3D%26%7C%26ord_field%3D%26%7C%26recentSearch0%3D%26%7C%26recentSearch1%3D%26%7C%26recentSearch2%3D%26%7C%26recentSearch3%3D%26%7C%26recentSearch4%3D%26%7C%26collapse_expansion%3D; sensorsdata2015jssdkcross=%7B%22distinct_id%22%3A%22e8827e1fde555900b3c2ac84b573d6d4%22%2C%22first_id%22%3A%2218ef7925ddb155d-03a4228e02f325c-26001a51-1327104-18ef7925ddcee1%22%2C%22props%22%3A%7B%22%24latest_traffic_source_type%22%3A%22%E7%9B%B4%E6%8E%A5%E6%B5%81%E9%87%8F%22%2C%22%24latest_search_keyword%22%3A%22%E6%9C%AA%E5%8F%96%E5%88%B0%E5%80%BC_%E7%9B%B4%E6%8E%A5%E6%89%93%E5%BC%80%22%2C%22%24latest_referrer%22%3A%22%22%7D%2C%22identities%22%3A%22eyIkaWRlbnRpdHlfY29va2llX2lkIjoiMThlZjc5MjVkZGIxNTVkLTAzYTQyMjhlMDJmMzI1Yy0yNjAwMWE1MS0xMzI3MTA0LTE4ZWY3OTI1ZGRjZWUxIiwiJGlkZW50aXR5X2xvZ2luX2lkIjoiZTg4MjdlMWZkZTU1NTkwMGIzYzJhYzg0YjU3M2Q2ZDQifQ%3D%3D%22%2C%22history_login_id%22%3A%7B%22name%22%3A%22%24identity_login_id%22%2C%22value%22%3A%22e8827e1fde555900b3c2ac84b573d6d4%22%7D%2C%22%24device_id%22%3A%2218ef7925ddb155d-03a4228e02f325c-26001a51-1327104-18ef7925ddcee1%22%7D; NSC_ohjoy-bmjzvo-200-159=ffffffffc3a0d42e45525d5f4f58455e445a4a423660; privacy=1713954342; search=jobarea%7E%60%7C%21recentSearch0%7E%60000000%A1%FB%A1%FA000000%A1%FB%A1%FA0000%A1%FB%A1%FA00%A1%FB%A1%FA99%A1%FB%A1%FA%A1%FB%A1%FA99%A1%FB%A1%FA99%A1%FB%A1%FA99%A1%FB%A1%FA99%A1%FB%A1%FA9%A1%FB%A1%FA99%A1%FB%A1%FA%A1%FB%A1%FA0%A1%FB%A1%FAjava%A1%FB%A1%FA2%A1%FB%A1%FA1%7C%21recentSearch1%7E%60030200%A1%FB%A1%FA000000%A1%FB%A1%FA0000%A1%FB%A1%FA00%A1%FB%A1%FA99%A1%FB%A1%FA%A1%FB%A1%FA99%A1%FB%A1%FA99%A1%FB%A1%FA99%A1%FB%A1%FA99%A1%FB%A1%FA9%A1%FB%A1%FA99%A1%FB%A1%FA%A1%FB%A1%FA0%A1%FB%A1%FAC%2B%2B%A1%FB%A1%FA2%A1%FB%A1%FA1%7C%21recentSearch2%7E%60030200%A1%FB%A1%FA000000%A1%FB%A1%FA0000%A1%FB%A1%FA00%A1%FB%A1%FA99%A1%FB%A1%FA%A1%FB%A1%FA99%A1%FB%A1%FA99%A1%FB%A1%FA99%A1%FB%A1%FA99%A1%FB%A1%FA9%A1%FB%A1%FA99%A1%FB%A1%FA%A1%FB%A1%FA0%A1%FB%A1%FAjava%A1%FB%A1%FA2%A1%FB%A1%FA1%7C%21recentSearch3%7E%60110200%A1%FB%A1%FA000000%A1%FB%A1%FA0000%A1%FB%A1%FA00%A1%FB%A1%FA99%A1%FB%A1%FA%A1%FB%A1%FA99%A1%FB%A1%FA99%A1%FB%A1%FA99%A1%FB%A1%FA99%A1%FB%A1%FA9%A1%FB%A1%FA99%A1%FB%A1%FA%A1%FB%A1%FA0%A1%FB%A1%FAjava%A1%FB%A1%FA2%A1%FB%A1%FA1%7C%21recentSearch4%7E%60110200%A1%FB%A1%FA000000%A1%FB%A1%FA0000%A1%FB%A1%FA00%A1%FB%A1%FA99%A1%FB%A1%FA%A1%FB%A1%FA99%A1%FB%A1%FA99%A1%FB%A1%FA99%A1%FB%A1%FA99%A1%FB%A1%FA9%A1%FB%A1%FA99%A1%FB%A1%FA%A1%FB%A1%FA0%A1%FB%A1%FA%C8%AB%D5%BB%A1%FB%A1%FA2%A1%FB%A1%FA1%7C%21; acw_tc=ac11000117139677466643926e00dfa74a774076fdd17992aaef7ebac6573d; acw_sc__v2=662912840f084f92bc3f9d10bffb174abc610c95; JSESSIONID=132BFF669AF7917318F31F7A9D676A4F; ssxmod_itna=Qqmx0DcDgDn0Yx7q0dKYIEPCw1A+883eDBQGmE2mx0vP3GzDAxn40iDt=rui8Q1GD4qmn08BGQYKehPEYQC6jOowK7ZdoGLDmKDy3QhneDxhq0rD74irDDxD3DbRdDSDWKD9D0bMgy2VKDbxi3ZxGCCx0C4FYD7OHkvOYDhxDCR0PDwpYCKDDzKefx3iKq3WYDe2ph9po1qGfPFnKD9pYDsh06KnFpBfLxlh3jRtYdvx0kYq0OBxgCO4Gd0gHzq4WWejRNpQx4UQGPmnGxQ6RDK0iAm0GKqQI4KiG4nLxP7lq/DDpPKGsK4D; ssxmod_itna2=Qqmx0DcDgDn0Yx7q0dKYIEPCw1A+883eDBQGmE2Dn9Si5xDsHrDLjGWkO7iAPkrH6Y2YWuBXGqfrf76pVQILErA2FtZ8=Kc/6mkuGCZUpE9CrXOIM7vOL9P7=qIq+Wz004T3nRxgnE51FGiQqKHigxBrRenGPSB=FYAOdxidxZq178IrCbIpF2ppKcnA6=Sb=pwp6gg1rf5EYFqvRIYmuO9IOUB62Z8vc8ehtr5suba6ZKm6RZEFokBRnRO22t6cKlLsNvYrrz=ce2d0WVdSzH1XpL5h97rerWAr5wvKLEIESAiCChFQRxDuxxWmDLuT4n+bqqj+1iY4BRmC+7mTeWe2+q1+A0WpFUGVWuNB4xmAxCRVn4/WDP54ziYMe+MAPjt4TFxDKMmD7=DYIxeD; tfstk=fj8jOuThI-2f-UR5IihPPN_ToNQ1fKgU1519tCU46ZQYBP65OsdNucx5CLp5HOkckOU6QC82QFOg51d9IjXZi0RDiNbtLv8s8IAmGkYj4Y7t6QeGl8RS82RDM1XyEb0Es4sqwOXOWiIY28Bl1SFvBiI8yTfG6-CTkbORE1QO6sEYeQCO1-CYWbcjF_mfHIMaXATAg88yMTaQZU1x99ghFPU9PswFFIn0WPL5GiTw0msdfi-9tMY2_ValuBtRy1Ti9l61AhLVyEH-Jgj9XHS64-h2pdOJIZ8-6oBp0K7JkHNTWQ_fBpTRv-M5pEAJ-aIrJXOJrKRDPCPtW_JFeIYA52hhlZBAP_YZErB62hLVmN2xCOYWwEK1404Fd7dgf7s35_6ENbZgbgtzIL7tr6GFD_fy8bG7hljAZ_6ENbZgjiClaglSN-ZG.'
-
+Cookie2 = 'guid=7b4ff9b4d9a113f6cc0b32de6b2cbf3b; sajssdk_2015_cross_new_user=1; Hm_lvt_1370a11171bd6f2d9b1fe98951541941=1714226436; Hm_lpvt_1370a11171bd6f2d9b1fe98951541941=1714226436; acw_tc=ac11000117142264407372112e7fdd2be7a4bcad4e1865d36d3f54c0e4af71; sensorsdata2015jssdkcross=%7B%22distinct_id%22%3A%227b4ff9b4d9a113f6cc0b32de6b2cbf3b%22%2C%22first_id%22%3A%2218f1fdb92e913b5-01047eb3602634f-26001d51-1327104-18f1fdb92ea10c6%22%2C%22props%22%3A%7B%22%24latest_traffic_source_type%22%3A%22%E7%9B%B4%E6%8E%A5%E6%B5%81%E9%87%8F%22%2C%22%24latest_search_keyword%22%3A%22%E6%9C%AA%E5%8F%96%E5%88%B0%E5%80%BC_%E7%9B%B4%E6%8E%A5%E6%89%93%E5%BC%80%22%2C%22%24latest_referrer%22%3A%22%22%7D%2C%22identities%22%3A%22eyIkaWRlbnRpdHlfY29va2llX2lkIjoiMThmMWZkYjkyZTkxM2I1LTAxMDQ3ZWIzNjAyNjM0Zi0yNjAwMWQ1MS0xMzI3MTA0LTE4ZjFmZGI5MmVhMTBjNiIsIiRpZGVudGl0eV9sb2dpbl9pZCI6IjdiNGZmOWI0ZDlhMTEzZjZjYzBiMzJkZTZiMmNiZjNiIn0%3D%22%2C%22history_login_id%22%3A%7B%22name%22%3A%22%24identity_login_id%22%2C%22value%22%3A%227b4ff9b4d9a113f6cc0b32de6b2cbf3b%22%7D%2C%22%24device_id%22%3A%2218f1fdb92e913b5-01047eb3602634f-26001d51-1327104-18f1fdb92ea10c6%22%7D; acw_sc__v2=662d050c1301b8e9af82acfbe3b4a375db1fbf30; nsearch=jobarea%3D%26%7C%26ord_field%3D%26%7C%26recentSearch0%3D%26%7C%26recentSearch1%3D%26%7C%26recentSearch2%3D%26%7C%26recentSearch3%3D%26%7C%26recentSearch4%3D%26%7C%26collapse_expansion%3D; search=jobarea%7E%60%7C%21recentSearch0%7E%60000000%A1%FB%A1%FA000000%A1%FB%A1%FA0000%A1%FB%A1%FA00%A1%FB%A1%FA99%A1%FB%A1%FA%A1%FB%A1%FA99%A1%FB%A1%FA99%A1%FB%A1%FA99%A1%FB%A1%FA99%A1%FB%A1%FA9%A1%FB%A1%FA99%A1%FB%A1%FA%A1%FB%A1%FA0%A1%FB%A1%FAjava%A1%FB%A1%FA2%A1%FB%A1%FA1%7C%21; JSESSIONID=3D7370D27D698C11A59F32DC5E62DEE3; ssxmod_itna=iqrtLG7i0LoOo0=dGQaG=qi=D70PPrkrDlpi4A5D8D6DQeGTQ6qDBn2WcagOdaRqGOKoeTok8t62BoPpSDpxrDHxY=DUoj4qkQDeWQD5xGoDPxDeDADYojDAqiOD7qDdA1dsU8DbxYPlDitLD7U/DeDj+q=24eG0DDUaj4G2YC6tDDXtBjw4/4xDxGYL4Qt3sTYrTYxnD0t4xBL=+6qnGWF8MBtrapaV3rQDzT7DtkUP1wbDCO6lAuN1KAm3KGhCf0L=trAejgGtQR8hS7Dt6ODoeRL4Bom4mDwYUz/tDDfPANxxD===; ssxmod_itna2=iqrtLG7i0LoOo0=dGQaG=qi=D70PPrkD6r+xGqDsAoDLG3gIf4nRdIMG1pkhkpt9z=DBiHklEfAmma3jha5GUbnERUETTASy6HbWpBc=IjC1kSf+c/PI1UaZU=weG2e47=D+crD=; tfstk=f3JSO-9G-z45IK-f-_nVhYgN_JXCOUMaAkspjHezvTB8JJ_ffgKFUXAfRELfywuleweB8HJy8pt3dMKp-0bEqj-kq9XK7VJIQ3xlSeS3aqWKvnUhFr-jQA-k2Mb2omDZxKwl_wbdp_C8MrQcYwIJJ_CADZjhvzILemtAoMBLe6F8krIdV8ERpb3Elic5y3gUiOh0VAbk2Zw6mKsRO7xRlJephI1PW-7bpJpfVnXWcNwsTNdGz17Mkxy5dnIBl1RS58TBvhAdGpa-4FKprK6lCXol1Id2__OjyJ_2UM1OpsZLpn6pw6pCBAUf'
 # 这个装饰器的作用就是在滑块失败的时候可以重复滑动
 def getBaseInfoHtml(url):
     global Cookie2
@@ -120,7 +119,7 @@ def getBaseInfoHtml2(url):
     qwer = response.text
     if 'resultbody' in qwer:
         a = json.loads(qwer)
-        ttt = random.uniform(0.5,1)
+        ttt = random.uniform(2,5)
         time.sleep(ttt)
         return a
     else:
@@ -287,7 +286,7 @@ def getJobKeyWords2(url):
                 i = 0
             else:
                 job_keywords = job_keywords + '/' + text
-    ttt = random.uniform(0.5,1)
+    ttt = random.uniform(2,4)
     time.sleep(ttt)
     return fl_keywords,job_keywords
 
@@ -321,27 +320,29 @@ def parseDataFields(i):
     companyName = i['companyName']  # 公司名称
     companyTypeString = i['companyTypeString']  # 企业类型
     companySizeString = i['companySizeString']  # 公司人数
-    companyIndustryType1Str = i['companyIndustryType1Str'] # 工业类型
+    companyIndustryType1Str = ''
+    if 'companyIndustryType1Str' in i.keys():
+        companyIndustryType1Str = i['companyIndustryType1Str'] # 工业类型
     # lon = i['lon']  # 纬度
     # lat = i['lat']  # 精度
     jobHref = i['jobHref']  # 岗位链接
     # companyHref = i['companyHref']  # 公司链接
-    jobWelfare,jobKeyWords = getJobKeyWords2(jobHref)
-    # jobWelfareCodeDataList = i['jobWelfareCodeDataList'] # 工作福利
-    # jobWelfare = ""
-    # # 如果列表不为空，遍历获取每个福利合成一个字符串
-    # if jobWelfareCodeDataList:
-    #     flag = 0
-    #     for j in jobWelfareCodeDataList:
-    #         if flag == 0:
-    #             jobWelfare = j['chineseTitle']
-    #             flag = 1
-    #         else:
-    #             jobWelfare += '/' + j['chineseTitle']
+    # jobWelfare,jobKeyWords = getJobKeyWords2(jobHref)
+    jobWelfareCodeDataList = i['jobWelfareCodeDataList'] # 工作福利
+    jobWelfare = ""
+    # 如果列表不为空，遍历获取每个福利合成一个字符串
+    if jobWelfareCodeDataList:
+        flag = 0
+        for j in jobWelfareCodeDataList:
+            if flag == 0:
+                jobWelfare = j['chineseTitle']
+                flag = 1
+            else:
+                jobWelfare += '/' + j['chineseTitle']
 
 
     s = [jobName, jobAreaString, provideSalaryString, issueDateString, workYearString, degreeString,companyName,companyTypeString,
-         companySizeString, companyIndustryType1Str, jobHref, jobKeyWords, jobWelfare]
+         companySizeString, companyIndustryType1Str, jobHref, jobWelfare]
 
     document = {}
     for i in range(len(columns)):
@@ -355,35 +356,48 @@ if __name__ == '__main__':
     timestamp = int(time.time())
     # 将时间戳转换为指定格式的字符串
     formatted_timestamp = "{:06d}".format(timestamp)
-    jobName = input("请输入岗位:")
-    keywords = [
-        'Java','C/C++','PHP','Python','C#','.NET','Golang','Node.js','Sql'
-        'Android','iOS','小程序开发','JavaScript','Vue','Unity',
-        '软件测试','网络安全','算法','人工智能','大数据','全栈','嵌入式'
+    # jobName = input("请输入岗位:")
+    # 'Java','C++','PHP','Python','C#','Golang','Node.js','Sql'
+    #         'Android','iOS','小程序开发','JavaScript','Vue','Unity',
+    # '软件测试','网络安全','算法','人工智能','大数据','全栈','嵌入式'
+    job_list = [
+        'java', 'C++', 'PHP', 'Python', 'C#', '.NET', 'Golang', 'Node.js', 'Sql',
+        'Android', 'iOS', '小程序开发', 'JavaScript','Vue', 'Unity',
+        '软件测试', '网络安全', '算法', '人工智能', '大数据', '全栈', '嵌入式'
     ]
-    j = 1
-    client = pymongo.MongoClient('10.242.100.213', 27017)
+    client = pymongo.MongoClient('localhost', 27017)
     db = client['jobdb']
-    for city in citys_code_map.keys():
-        code = citys_code_map[city]
-        for page in range(1, 2):
-            j = j+1
-            """直接把全量的500条作为一次数据接口了"""
-            url = (f'https://we.51job.com/api/job/search-pc?api_key=51job&timestamp={formatted_timestamp}&keyword={jobName}'
-                   f'&searchType=2&function=&industry=&jobArea={code}&jobArea2=&landmark=&metro=&salary=&workYear=&degree=&'
-                   f'companyType=&companySize=&jobType=&issueDate=&sortType=3&pageNum=1&requestId=71bfbc17ec519737773f2b7e039f1d27'
-                   f'&pageSize=20&source=1&accountId=&pageCode=sou%7Csou%7Csoulb')
-            html = getBaseInfoHtml2(url)
-            dataList = []
-            bba = html['resultbody']['job']['items']
-            for i in bba:
-                data = parseDataFields(i)
-                print(data)
-                dataList.append(data)
-            save(db,jobName, dataList)
-            dataList.clear()
-        print(city)
-        break
+    for jobName in job_list:
+        for city in citys_code_map.keys():
+            code = citys_code_map[city]
+            for page in range(1, 6):
+                print('正在爬取  ' + city + '  的  ' + jobName + '  的第  ' + str(page) + '  页岗位信息')
+                """直接把全量的500条作为一次数据接口了"""
+                url = (f'https://we.51job.com/api/job/search-pc?api_key=51job&timestamp={formatted_timestamp}&keyword={jobName}'
+                       f'&searchType=2&function=&industry=&jobArea={code}&jobArea2=&landmark=&metro=&salary=&workYear=&degree=&'
+                       f'companyType=&companySize=&jobType=&issueDate=&sortType=3&pageNum=1&requestId=71bfbc17ec519737773f2b7e039f1d27'
+                       f'&pageSize=200&source=1&accountId=&pageCode=sou%7Csou%7Csoulb')
+                html = getBaseInfoHtml(url)
+                dataList = []
+                bba = html['resultbody']['job']['items']
+                for i in bba:
+                    data = parseDataFields(i)
+                    print(data)
+                    dataList.append(data)
+                save(db,jobName, dataList)
+                if len(dataList) == 0:
+                    html = getBaseInfoHtml(url)
+                    dataList = []
+                    bba = html['resultbody']['job']['items']
+                    for i in bba:
+                        data = parseDataFields(i)
+                        print(data)
+                        dataList.append(data)
+                    save(db, jobName, dataList)
+                if len(dataList) < 200:
+                    print('数据不足200条，爬取结束')
+                    break
+                # time.sleep(random.uniform(5, 10))
     client.close()
 # if __name__ == '__main__':
 #     c,b = getJobKeyWords2('https://jobs.51job.com/shenzhen-nsq/154253911.html?s=sou_sou_soulb&t=0_0&req=71bfbc17ec519737773f2b7e039f1d27')

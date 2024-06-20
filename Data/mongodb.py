@@ -16,8 +16,9 @@ def save(db,jobName,dataList):
     # 创建集合
     collection = db[jobName]
 
-    # 插入数据
-    collection.insert_many(dataList)
+    if len(dataList)>0:
+        # 插入数据
+        collection.insert_many(dataList)
 
     print("数据插入成功")
 
@@ -28,28 +29,32 @@ def delRepeatData(db):
         # 删除集合中工作链接相同的重复数据，保留第一条
         # 查找重复的工作链接及对应的文档
         pipeline = [
-            {"$sort": {"jobLink": 1, "_id": 1}},  # 先按工作链接排序，再按_id（默认按插入顺序）排序
+            {"$sort": {"岗位链接": 1, "_id": 1}},  # 先按工作链接排序，再按_id（默认按插入顺序）排序
             {"$group": {
-                "_id": "$jobLink",
+                "_id": "$岗位链接",
                 "docs": {"$push": "$$ROOT"},
                 "count": {"$sum": 1}
             }},
             {"$match": {"count": {"$gt": 1}}}  # 只保留重复的工作链接
         ]
         duplicates = list(collection.aggregate(pipeline, allowDiskUse=True))
-
+        k = 0
         # 删除除第一条以外的重复数据
         for doc in duplicates:
             if doc["count"] > 1:
                 keep_doc_id = doc["docs"][0]["_id"]
                 for duplicate in doc["docs"][1:]:
                     collection.delete_one({"_id": duplicate["_id"]})
+                    k = k + 1
 
-    print("数据去重成功")
+        print(jobName +"数据去重成功" + '，去重的数量：' + str(k))
+
+    # print("数据去重成功")
 
 
 def get_unifiedSalary(salary):
-    unifiedSalary = 0.0
+    if type(salary) != str:
+        return salary
     # 1.5千/天
     if re.findall(r'(.*)\千\/天', salary):
         s = re.findall(r'(.*)\千\/天', salary)[0]
@@ -113,21 +118,58 @@ def get_unifiedSalary(salary):
         unifiedSalary = round(unifiedSalary, 2)
 
     else:
-        unifiedSalary = salary
+        unifiedSalary = 1.0
 
     return unifiedSalary
+
+def unify_salary(db,jobName):
+    collection = db[jobName]
+    for doc in collection.find():
+        salary = doc['薪资']
+        unifiedSalary = get_unifiedSalary(salary)
+        collection.update_one({'_id': doc['_id']}, {'$set': {'薪资': unifiedSalary}})
+    print(jobName +'薪资统一完成')
+def unify_experience(db):
+    for jobName in db.list_collection_names():
+        collection = db[jobName]
+        for doc in collection.find():
+            experience = doc['经验要求']
+            # 获取经验要求中的出现的第一个数字,经验要求的形式有：3-4年，3年及以上，2年，3年-4年
+            if re.findall(r'(.*)\年\-(.*)\年', experience):
+                s = re.findall(r'(.*)\年\-(.*)\年', experience)[0]
+                experience2 = s + '年'
+            elif re.findall(r'(.*)\-', experience):
+                s = re.findall(r'(.*)\-', experience)[0]
+                experience2 = s + '年'
+            elif re.findall(r'(.*)\年', experience):
+                s = re.findall(r'(.*)\年', experience)[0]
+                experience2 = s + '年'
+            elif re.findall(r'(.*)\年\以上', experience):
+                s = re.findall(r'(.*)\年\以上', experience)[0]
+                experience2 = s + '年'
+            else:
+                experience2 = experience
+            collection.update_one({'_id': doc['_id']}, {'$set': {'经验要求': experience2}})
+        print(jobName +'经验要求统一完成')
+
+
+
 
 def get_city_count_map(db,jobName):
     """
     统计指定职位在各个城市的数量。
+
     参数:
     - jobName: 字符串，指定的职位名称。
+
     返回值:
     - city_count_map: 字典，键为城市名，值为该职位在该城市的数量。
     """
     collection = db[jobName]
+
     # 初始化城市数量字典
     city_count_map = {}
+
     # 聚合操作，按城市分组统计职位数量
     result = collection.aggregate([
         {
@@ -140,6 +182,7 @@ def get_city_count_map(db,jobName):
             '$sort': {'count': -1}  # 按计数值降序排序结果
         }
     ])
+
     # 遍历结果，填充城市数量字典
     for doc in result:
         if Geo().get_coordinate(doc['_id']):
@@ -197,7 +240,6 @@ def get_primary_city_salary(db,jobName):
             primary_city_salary[doc['_id']] = round(doc['avg_salary'],2)
     return primary_city_salary
 
-
 def get_company_type_count_dict(db,jobName):
     collection = db[jobName]
     result = collection.aggregate([
@@ -212,11 +254,31 @@ def get_company_type_count_dict(db,jobName):
         }
     ])
 
-    company_type_count_dict = []
+    company_type_count_dict = {}
     for doc in result:
         if doc['_id'] != '':
-            company_type_count_dict.append((doc['_id'],doc['count']))
+            company_type_count_dict[doc['_id']] = doc['count']
     return company_type_count_dict
+
+
+def get_company_size_count_dict(db,jobName):
+    collection = db[jobName]
+    result = collection.aggregate([
+        {
+            '$group': {
+                '_id': '$公司规模',  # 以公司人数字段作为分组依据
+                'count': {'$sum': 1}  # 计算每组的文档数
+            }
+        },
+        {
+            '$sort': {'count': -1}  # 按计数值降序排序结果
+        }
+    ])
+    company_size_count_dict = {}
+    for doc in result:
+        if doc['_id'] != '':
+            company_size_count_dict[doc['_id']] = doc['count']
+    return company_size_count_dict
 
 
 # 统计学历和薪资的关系
@@ -388,6 +450,34 @@ def get_job_name(db):
 # if __name__ == '__main__':
 #     # test()
 #     delRepeatData()
+
+def getAllData(db,jobName):
+    # 获取所有数据到Pandas的DataFrame
+    df = pd.DataFrame()
+
+    delBadData(db,jobName)
+    collection = db[jobName]
+    result = collection.find()
+    df = df._append(pd.DataFrame(list(result)))
+
+    # 删除id列
+    df = df.drop('_id', axis=1)
+    df.dropna(inplace=True)
+    return df
+
+def delBadData(db,jobName):
+    collection = db[jobName]
+    # 删除数据库中城市带“·”的数据
+    result1 = collection.delete_many({'城市': {'$regex': '·'}})
+    result2 = collection.delete_many({'薪资': {'$not': {'$type': 'double'}}})
+    # 打印删除的数据条数
+    # 打印被删除的文档数量
+    print(f"Deleted {result1.deleted_count} documents with '·' in the city field.")
+    print(f"Deleted {result2.deleted_count} documents with non-double values in the salary field.")
+    # 删除数据库中薪资不是double类型的数据
+
+
+
 
 
 #公司规模
