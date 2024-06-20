@@ -11,15 +11,14 @@
 
     <title>Python-Data Analysis</title>
 
-    <!-- Custom fonts for this template-->
-    <link href="css/all.min.css" rel="stylesheet" type="text/css">
 
-    <!-- Custom styles for this template -->
-    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="{{url_for('static',filename='css/all.min.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{url_for('static',filename='css/sb-admin-2.min.css')}}" rel="stylesheet" type="text/css">
 
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
 </head>
 
-<body id="page-top">
+<body id="page-top" onload="change('index')">
 
     <!-- Page Wrapper -->
     <div id="wrapper">
@@ -37,47 +36,67 @@
 
             <!-- Nav Item - 各地区招聘需求分布 -->
             <li class="nav-item active">
-                <a class="nav-link" href="index.html" ><span>各地区招聘需求分布</span></a>
+                <a class="nav-link"><span onclick="change('index')">各地区招聘需求分布</span></a>
             </li>
 
             <!-- Nav Item - 各城市招聘需求词云 -->
             <li class="nav-item active">
-                <a class="nav-link" href="city_recruit.html" ><span>各城市招聘需求词云</span></a>
+                <a class="nav-link"><span onclick="change('city_recruit')">各城市招聘需求词云</span></a>
             </li>
 
             <!-- Nav Item - 主要城市薪资关系 -->
             <li class="nav-item active">
-                <a class="nav-link" href="salary_city.html" ><span>主要城市薪资关系</span></a>
+                <a class="nav-link"><span onclick="change('salary_city')">主要城市薪资关系</span></a>
             </li>
 
             <!-- Nav Item - 薪资与学历关系 -->
             <li class="nav-item active">
-                <a class="nav-link" href="salary_education.html" ><span>薪资与学历关系</span></a>
+                <a class="nav-link"><span onclick="change('salary_education')">薪资与学历关系</span></a>
             </li>
 
             <!-- Nav Item - 薪资与工作经验关系 -->
             <li class="nav-item active">
-                <a class="nav-link" href="salary_experience.html" ><span>薪资与工作经验关系</span></a>
+                <a class="nav-link"><span onclick="change('salary_experience')">薪资与工作经验关系</span></a>
             </li>
 
             <!-- Nav Item - 学历要求分析 -->
             <li class="nav-item active">
-                <a class="nav-link" href="education_require.html" ><span>学历要求分析</span></a>
+                <a class="nav-link"><span onclick="change('education_require')">学历要求分析</span></a>
             </li>
 
             <!-- Nav Item - 工作经验要求分析 -->
             <li class="nav-item active">
-                <a class="nav-link" href="experience_require.html" ><span>工作经验要求分析</span></a>
+                <a class="nav-link"><span onclick="change('experience_require')">工作经验要求分析</span></a>
             </li>
 
             <!-- Nav Item - 公司福利词云 -->
             <li class="nav-item active">
-                <a class="nav-link" href="cop_welfare.html" ><span>公司福利词云</span></a>
+                <a class="nav-link"><span onclick="change('cop_welfare')">公司福利词云</span></a>
             </li>
 
             <!-- Nav Item - 公司性质占比分析 -->
             <li class="nav-item active">
-                <a class="nav-link" href="cop_character.html" ><span>公司性质占比分析</span></a>
+                <a class="nav-link"><span onclick="change('cop_character')">公司性质占比分析</span></a>
+            </li>
+
+            <!-- Nav Item - 公司规模分布分析 -->
+            <li class="nav-item active">
+                <a class="nav-link"><span onclick="change('cop_scale')">公司规模分布分析</span></a>
+            </li>
+
+            <!-- Nav Item - 公司行业分布分析 -->
+            <li class="nav-item active">
+                <a class="nav-link"><span onclick="change('cop_industry')">公司行业分布分析</span></a>
+            </li>
+
+            <!-- Nav Item - 公司规模薪资关系 -->
+            <li class="nav-item active">
+                <a class="nav-link"><span onclick="change('salary_scale_relation')">公司规模薪资关系</span></a>
+            </li>
+
+            <!-- Nav Item - 薪资预测 -->
+            <li class="nav-item active">
+                <a class="nav-link"><span onclick="change('salary_forecast')">薪资预测</span></a>
             </li>
 
             <!-- Divider -->
@@ -94,12 +113,20 @@
                 <!-- Topbar -->
                 <nav class="sticky-footer bg-white">
                     <div class="copyright text-center my-auto" >
-                        <span>以“大数据”岗位招聘为例</span>
+                        <span>
+                            以
+                            <select onchange="testAjax(event.srcElement.value)">
+                                {%for list in list%}      {#使用for循环输出list，这里要注意格式#}
+                                <option :value="list">{{ list }}</option>
+                                {% endfor %}                {#for循环结束语句#}
+                            </select>
+                            岗位招聘为例
+                        </span>
                     </div>
                 </nav>
 
                 <!-- Draw Content -->
-                <iframe marginwidth=0 marginheight=0 width="100%" height="100%" src="web/各地区招聘需求分布.html" frameborder="no" ></iframe>
+                <iframe id="frame1" marginwidth=0 marginheight=0 width="100%" height="100%" src="" frameborder="no" ></iframe>
 
             </div>
 
@@ -107,7 +134,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto" >
-                        <span>Copyright &copy; My Website 2023</span>
+                        <span>Copyright &copy; My Website 2024</span>
                     </div>
                 </div>
             </footer>
@@ -117,5 +144,28 @@
     </div>
 
 </body>
+
+<script>
+    var chart_type=index
+
+    function change(n){
+        document.getElementById("frame1").src="http://127.0.0.1/"+n;
+        chart_type=n;
+    }
+
+    function testAjax(jobName) {
+        $.ajax({
+            type: "get", // 以get方式发起请求
+            url: "/job_type?jobName=" + jobName,
+            success(data) {
+                // data为返回值
+                // 成功后的回调方法
+            }
+        })
+        alert("加载成功")
+        change(chart_type)
+    }
+
+</script>
 
 </html>

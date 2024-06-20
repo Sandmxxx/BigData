@@ -1,6 +1,16 @@
 import re
 
 import pymongo
+import pandas as pd  # 数据分析库
+import re  # 正则表达式
+from pyecharts.charts import Funnel, Pie, Geo, WordCloud, Line, Bar  # 导入pyecharts图表模块的漏斗图、饼图、Geo图等图绘制
+from pyecharts import options as opts   # 导入图表配置模块
+from pyecharts.globals import SymbolType   # 图片样式设置
+import numpy as np   # 数学函数库
+
+
+client = pymongo.MongoClient('10.242.100.213', 27017)
+db = client['jobdb']
 
 def save(db,jobName,dataList):
     # 创建集合
@@ -106,20 +116,44 @@ def get_unifiedSalary(salary):
         unifiedSalary = salary
 
     return unifiedSalary
+
 def get_city_count_map(db,jobName):
     """
     统计指定职位在各个城市的数量。
-
     参数:
     - jobName: 字符串，指定的职位名称。
-
     返回值:
     - city_count_map: 字典，键为城市名，值为该职位在该城市的数量。
     """
     collection = db[jobName]
-
     # 初始化城市数量字典
     city_count_map = {}
+    # 聚合操作，按城市分组统计职位数量
+    result = collection.aggregate([
+        {
+            '$group': {
+                '_id': '$城市',  # 以城市字段作为分组依据
+                'count': {'$sum': 1}  # 计算每组的文档数
+            }
+        },
+        {
+            '$sort': {'count': -1}  # 按计数值降序排序结果
+        }
+    ])
+    # 遍历结果，填充城市数量字典
+    for doc in result:
+        if Geo().get_coordinate(doc['_id']):
+            city_count_map[doc['_id']] = doc['count']
+    return city_count_map
+
+#城市招聘词云
+def get_city_word(db,jobName):
+    """
+    城市招聘词云
+    """
+    collection = db[jobName]
+    # 初始化城市数量字典
+    city_word_map = []
 
     # 聚合操作，按城市分组统计职位数量
     result = collection.aggregate([
@@ -136,8 +170,32 @@ def get_city_count_map(db,jobName):
 
     # 遍历结果，填充城市数量字典
     for doc in result:
-        city_count_map[doc['_id']] = doc['count']
-    return city_count_map
+        city_word_map.append((doc['_id'],doc['count']))
+    return city_word_map
+
+#主要城市薪资关系
+def get_primary_city_salary(db,jobName):
+    collection = db[jobName]
+    result = collection.aggregate([
+        {
+            '$group': {
+                '_id': '$城市',  # 以经验字段作为分组依据
+                'avg_salary': {'$avg': '$薪资'}  # 计算每组的文档数
+            }
+        },
+        {
+            '$sort': {'avg_salary': -1}  # 按计数值升序排序结果
+        }
+    ])
+
+    primary_city_salary = {}
+    i=0
+    for doc in result:
+        if i>9:break
+        if doc['_id'] != '':
+            i=i+1
+            primary_city_salary[doc['_id']] = round(doc['avg_salary'],2)
+    return primary_city_salary
 
 
 def get_company_type_count_dict(db,jobName):
@@ -154,32 +212,14 @@ def get_company_type_count_dict(db,jobName):
         }
     ])
 
-    company_type_count_dict = {}
+    company_type_count_dict = []
     for doc in result:
         if doc['_id'] != '':
-            company_type_count_dict[doc['_id']] = doc['count']
+            company_type_count_dict.append((doc['_id'],doc['count']))
     return company_type_count_dict
 
 
-def get_company_size_count_dict(db,jobName):
-    collection = db[jobName]
-    result = collection.aggregate([
-        {
-            '$group': {
-                '_id': '$公司规模',  # 以公司人数字段作为分组依据
-                'count': {'$sum': 1}  # 计算每组的文档数
-            }
-        },
-        {
-            '$sort': {'count': -1}  # 按计数值降序排序结果
-        }
-    ])
-    company_size_count_dict = {}
-    for doc in result:
-        if doc['_id'] != '':
-            company_size_count_dict[doc['_id']] = doc['count']
-    return company_size_count_dict
-
+# 统计学历和薪资的关系
 def get_degree_with_salary_relation(db,jobName):
     collection = db[jobName]
     # 统计学历和薪资的关系
@@ -191,7 +231,7 @@ def get_degree_with_salary_relation(db,jobName):
             }
         },
         {
-            '$sort': {'avg_salary': -1}  # 按计数值降序排序结果
+            '$sort': {'avg_salary': 1}  # 按计数值升序排序结果
         }
     ])
     degree_with_salary_relation = {}
@@ -200,26 +240,50 @@ def get_degree_with_salary_relation(db,jobName):
             degree_with_salary_relation[doc['_id']] = round(doc['avg_salary'],2)
     return degree_with_salary_relation
 
-def get_salary_with_experience_relation(db,jobName):
+# 统计工作经验和薪资的关系
+def get_experience_with_salary_relation(db,jobName):
+    collection = db[jobName]
+    # 统计工作经验和薪资的关系
+    result = collection.aggregate([
+        {
+            '$group': {
+                '_id': '$经验要求',  # 以学历字段作为分组依据
+                'avg_salary': {'$avg': '$薪资'}  # 计算每组的文档数
+            }
+        },
+        {
+            '$sort': {'avg_salary': 1}  # 按计数值升序排序结果
+        }
+    ])
+    degree_with_salary_relation = {}
+    for doc in result:
+        if doc['_id'] != '':
+            degree_with_salary_relation[doc['_id']] = round(doc['avg_salary'],2)
+    return degree_with_salary_relation
+
+
+def get_experience_requirements(db,jobName):
     collection = db[jobName]
     result = collection.aggregate([
         {
             '$group': {
                 '_id': '$经验要求',  # 以经验字段作为分组依据
-                'avg_salary': {'$avg': '$薪资'}  # 计算每组的文档数
+                'count': {'$sum': 1}  # 计算每组的文档数
             }
         },
         {
-            '$sort': {'avg_salary': -1}  # 按计数值降序排序结果
+            '$sort': {'count': -1}  # 按计数值降序排序结果
         }
     ])
-    salary_with_experience_relation = {}
+    experience_requirements = []
     for doc in result:
         if doc['_id'] != '':
-            salary_with_experience_relation[doc['_id']] = round(doc['avg_salary'],2)
-    return salary_with_experience_relation
+            experience_requirements.append((doc['_id'],round(doc['count'],2)))
+    return experience_requirements
 
-def get_salary_with_comany_size_relation(db,jobName):
+
+#公司规模-薪资关系
+def get_salary_with_company_size_relation(db,jobName):
     collection = db[jobName]
     result = collection.aggregate([
         {
@@ -228,15 +292,21 @@ def get_salary_with_comany_size_relation(db,jobName):
                 'avg_salary': {'$avg': '$薪资'}  # 计算每组的文档数
             }
         },
-        {
-            '$sort': {'avg_salary': -1}  # 按计数值降序排序结果
-        }
+        # {
+        #     '$sort': {'avg_salary': -1}  # 按计数值降序排序结果
+        # }
     ])
+    size=['少于50人','50-150人','150-500人','500-1000人','1000-5000人','5000-10000人','10000人以上']
     salary_with_comany_size_relation = {}
     for doc in result:
         if doc['_id'] != '':
             salary_with_comany_size_relation[doc['_id']] = round(doc['avg_salary'],2)
-    return salary_with_comany_size_relation
+    res={}
+    for i in size:
+        if salary_with_comany_size_relation.get(i) != None:
+            res[i]=salary_with_comany_size_relation[i]
+        else: res[i]=0
+    return res
 
 def get_industry_distribution(db,jobName):
     collection = db[jobName]
@@ -258,32 +328,6 @@ def get_industry_distribution(db,jobName):
             industry_distribution[doc['_id']] = doc['count']
     return industry_distribution
 
-def get_skill_requirements_distribution(db,jobName):
-    collection = db[jobName]
-    result = collection.aggregate([
-        {
-            "$project": {
-                "skills": {"$split": ["$技能要求", "/"]}
-            }
-        },
-        {
-            "$unwind": "$skills"
-        },
-        {
-            "$group": {
-                "_id": "$skills",
-                "count": {"$sum": 1}
-            }
-        },
-        {
-            "$sort": {"count": -1}
-        }
-    ])
-    skill_distribution = {}
-    for doc in result:
-        if doc['_id'] != '':
-            skill_distribution[doc['_id']] = doc['count']
-    return skill_distribution
 
 def get_welfare_distribution(db,jobName):
     collection = db[jobName]
@@ -306,19 +350,92 @@ def get_welfare_distribution(db,jobName):
             "$sort": {"count": -1}
         }
     ])
-    welfare_distribution = {}
+    welfare_distribution = []
     for doc in result:
         if doc['_id'] != '':
-            welfare_distribution[doc['_id']] = doc['count']
+            welfare_distribution.append((doc['_id'],doc['count']))
     return welfare_distribution
 
 def get_job_salary_distribution(db):
     job_salary_distribution = {}
     for jobName in db.list_collection_names():
-        job_salary_distribution[jobName] = get_salary_with_experience_relation(db,jobName)
+        job_salary_distribution[jobName] = get_experience_requirements(db,jobName)
     return job_salary_distribution
 
+def get_education_requirements(db,jobName):
+    collection = db[jobName]
+    result = collection.aggregate([
+        {
+            '$group': {
+                '_id': '$学历要求',  # 以行业字段作为分组依据
+                'count': {'$sum': 1}  # 计算每组的文档数
+            }
+        },
+        {
+            '$sort': {'count': -1}  # 按计数值降序排序结果
+        }
+    ])
+    education_requirements=[]
+    for doc in result:
+        if doc['_id'] != '':
+            education_requirements.append((doc['_id'],doc['count']))
+    return education_requirements
 
+
+def get_job_name(db):
+    job_name_list = db.list_collection_names()
+    return job_name_list
 # if __name__ == '__main__':
 #     # test()
 #     delRepeatData()
+
+
+#公司规模
+def get_cop_scale(db,jobName):
+    collection=db[jobName]
+    result = collection.aggregate([
+        {
+            '$group': {
+                '_id': '$公司规模',  # 以行业字段作为分组依据
+                'count': {'$sum': 1}  # 计算每组的文档数
+            }
+        }
+    ])
+    cop_scale = []
+    for doc in result:
+        if doc['_id'] != '':
+            cop_scale.append((doc['_id'], int(doc['count'])))
+    return cop_scale
+
+
+#公司行业分布
+def get_cop_industry(db,jobName):
+    collection=db[jobName]
+    result = collection.aggregate([
+        {
+            "$project": {
+                "industry": {"$split": ["$行业类型", "/"]}
+            }
+        },
+        {
+            "$unwind": "$industry"
+        },
+        {
+            "$group": {
+                "_id": "$industry",
+                "count": {"$sum": 1}
+            }
+        },
+        {
+            "$sort": {"count": -1}
+        }
+    ])
+    cop_industry=[]
+    # 只取前五十
+    i=0
+    for doc in result:
+        if doc['_id'] != '' and i<50:
+            cop_industry.append((doc['_id'], int(doc['count'])))
+            i=i+1
+    return cop_industry
+

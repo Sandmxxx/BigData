@@ -362,7 +362,7 @@ if __name__ == '__main__':
         '软件测试','网络安全','算法','人工智能','大数据','全栈','嵌入式'
     ]
     j = 1
-    client = pymongo.MongoClient('localhost', 27017)
+    client = pymongo.MongoClient('10.242.100.213', 27017)
     db = client['jobdb']
     for city in citys_code_map.keys():
         code = citys_code_map[city]

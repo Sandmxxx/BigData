@@ -71,7 +71,7 @@ c = (
         visualmap_opts=opts.VisualMapOpts(),
         title_opts=opts.TitleOpts(title="各地区招聘需求分布")
     )
-    .render("各地区招聘需求分布.html")  # 将图片存入HTML中
+    .render("../templates/各地区招聘需求分布.html")  # 将图片存入HTML中
 )
 
 # 对输入列表元素进行统计，返回列表
@@ -91,7 +91,7 @@ c = (
     WordCloud()
     .add("", add_word, word_size_range=[20, 100], shape=SymbolType.DIAMOND)
     .set_global_opts(title_opts=opts.TitleOpts(title="各城市招聘需求词云"))
-    .render("各城市招聘需求词云.html")
+    .render("../templates/各城市招聘需求词云.html")
 )
 
 # 对薪资——学历，薪资——经验等进行统计，返回字典
@@ -117,6 +117,7 @@ sal_add = statistics(address,sal_mean)
 add_sort = ['福州', '厦门', '泉州', '北京', '上海', '广州', '深圳',
             '杭州', '南京', '苏州', '重庆', '成都', '武汉', '合肥', '长沙', '济南', '郑州']
 sal_exp_sort = data_sort(add_sort,sal_add)
+print(sal_exp_sort)
 # 主要城市薪资关系
 c = (
     Bar()
@@ -126,7 +127,7 @@ c = (
         title_opts=opts.TitleOpts(title="主要城市薪资关系"),
         yaxis_opts=opts.AxisOpts(name="薪资：万元/月"),
     )
-    .render("主要城市薪资关系.html")
+    .render("../templates/主要城市薪资关系.html")
 )
 
 # 调用自定义方法，获取绘图数据
@@ -142,13 +143,15 @@ c = (
         title_opts=opts.TitleOpts(title="薪资与学历关系"),
         yaxis_opts=opts.AxisOpts(name="薪资：万元/月"),
     )
-    .render("薪资与学历关系.html")
+    .render("../templates/薪资与学历关系.html")
 )
 
 # 调用自定义方法，获取绘图数据
 sal_exp = statistics(experience,sal_mean)
 exp_sort = ['无需经验', '1年经验', '2年经验', '3-4年经验', '5-7年经验', '8-9年经验', '10年以上经验']
 sal_exp_sort = data_sort(exp_sort,sal_exp)
+print(sal_exp)
+print(sal_exp_sort)
 # 薪资与工作经验关系
 c = (
     Line()
@@ -158,11 +161,12 @@ c = (
         title_opts=opts.TitleOpts(title="薪资与工作经验关系"),
         yaxis_opts=opts.AxisOpts(name="薪资：万元/月"),
     )
-    .render("薪资与工作经验关系.html")
+    .render("../templates/薪资与工作经验关系.html")
 )
 
 # 调用自定义方法，获取绘图数据
 edu_per = list_count(education)
+print(edu_per)
 # 学历要求分析
 c = (
     Pie()
@@ -177,11 +181,12 @@ c = (
         legend_opts=opts.LegendOpts(orient="vertical", pos_top="15%", pos_left="2%"), # 设置图例参数
     )
     .set_series_opts(label_opts=opts.LabelOpts(formatter="{b}: {d}%")) # 数字项名称和百分比
-    .render("学历要求分析.html") # 将图形保存为HTML文件中
+    .render("../templates/学历要求分析.html") # 将图形保存为HTML文件中
 )
 
 # 调用自定义方法，获取绘图数据
 exp_per = list_count(experience)
+print(exp_per)
 # 工作经验要求分析
 c = (
     Funnel()
@@ -194,7 +199,7 @@ c = (
         title_opts=opts.TitleOpts(title="工作经验要求分析"),
         legend_opts=opts.LegendOpts(orient="vertical", pos_top="15%", pos_left="2%"), #设 置图例参数
     )
-    .render("工作经验要求分析.html")
+    .render("../templates/工作经验要求分析.html")
 )
 
 # 调用自定义方法，获取绘图数据
@@ -213,7 +218,7 @@ c = (
         legend_opts=opts.LegendOpts(orient="vertical", pos_top="15%", pos_left="2%"), # 设置图例参数
     )
     .set_series_opts(label_opts=opts.LabelOpts(formatter="{b}: {d}%")) # 数字项名称和百分比
-    .render("公司性质占比分析.html") # 将图形保存为HTML文件中
+    .render("../templates/公司性质占比分析.html") # 将图形保存为HTML文件中
 )
 
 # 调用自定义方法，获取绘图数据
@@ -223,5 +228,5 @@ c = (
     WordCloud()
     .add("", wel_word, word_size_range=[20, 100], shape=SymbolType.DIAMOND)
     .set_global_opts(title_opts=opts.TitleOpts(title="公司福利词云"))
-    .render("公司福利词云.html")
+    .render("../templates/公司福利词云.html")
 )
