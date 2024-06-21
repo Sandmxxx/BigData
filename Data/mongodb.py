@@ -254,10 +254,10 @@ def get_company_type_count_dict(db,jobName):
         }
     ])
 
-    company_type_count_dict = {}
+    company_type_count_dict = []
     for doc in result:
         if doc['_id'] != '':
-            company_type_count_dict[doc['_id']] = doc['count']
+            company_type_count_dict.append((doc['_id'], doc['count']))
     return company_type_count_dict
 
 

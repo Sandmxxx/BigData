@@ -10,6 +10,8 @@ from pyecharts.charts import Funnel, Pie, Geo, WordCloud, Line, Bar  # 导入pye
 from pyecharts import options as opts   # 导入图表配置模块
 from pyecharts.globals import SymbolType   # 图片样式设置
 
+from Data.salary_forecast import salary_forecast
+
 #from gevent import pywsgi
 
 app = Flask(__name__)
@@ -197,6 +199,7 @@ def cop_welfare():
 @app.route("/cop_character")
 def cop_character():
     company_type_count_dict=data.get_company_type_count_dict(db,jobName)
+    print(company_type_count_dict)
     c = (
         Pie()
         .add(
@@ -264,10 +267,38 @@ def salary_scale_relation():
     )
     return render_template('公司规模薪资关系.html')
 
+
 # 薪资预测
-@app.route("/salary_forecast")
-def salary_forecast():
-    return render_template('薪资预测.html')
+cities=['北京', '上海', '广州', '深圳', '厦门', '武汉', '西安', '杭州', '南京', '成都', '重庆', '东莞', '大连', '沈阳', '苏州', '昆明', '长沙', '合肥', '宁波', '郑州', '天津', '青岛', '济南', '哈尔滨', '长春', '福州', '珠三角']
+experience=['无需经验', '1年', '2年', '3年', '4年', '5年', '6年', '7年', '8年', '9年', '10年', '在校生/应届生', '其他']
+degree=['不限', '大专', '本科', '硕士', '博士', '中专', '高中', '初中', '中专/中技', '其他']
+company_size=['不限', '少于50人', '50-100人', '150-500人', '500-1000人', '1000-5000人', '5000-10000人', '10000人以上']
+Direction=''
+City=''
+Experience=''
+Degree=''
+Scale=''
+# 薪资预测
+@app.route("/salary_forecast1")
+def salary_forecast1():
+    job_name_list = data.get_job_name(db)
+    return render_template('薪资预测.html',list=job_name_list,list1=cities,list2=experience,list3=degree,list4=company_size)
+@app.route("/salary_forecast2")
+def salary_forecast2():
+    global Direction
+    Direction = request.values.get("direction")
+    global City
+    City = request.values.get("city")
+    global Experience
+    Experience = request.values.get("experience")
+    global Degree
+    Degree = request.values.get("degree")
+    global Scale
+    Scale = request.values.get("scale")
+    print(Direction+' '+City+' '+Experience+' '+Degree+' '+Scale)
+    return str(salary_forecast(db,Direction,City,Experience,Degree,Scale)[0])
+
+
 
 if __name__ == '__main__':
     app.run(debug=True,host='127.0.0.1',port=80)

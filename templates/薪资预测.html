@@ -1,19 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>薪资预测</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link href="{{url_for('static',filename='css/all.min.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{url_for('static',filename='css/sb-admin-2.min.css')}}" rel="stylesheet" type="text/css">
+
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+    <title>薪资预测</title>
 <style>
-.input {
-  max-width: 190px;
-  height: 44px;
-  background-color: #05060f0a;
-  border-radius: .5rem;
-  border: 2px solid transparent;
-  font-size: 1rem;
-
-}
-
 .all {
   margin:auto;
   width:50%;
@@ -38,41 +37,142 @@
     box-shadow: 0 12px 16px 0 rgba(0,0,0,.24),
     0 17px 50px 0 rgba(0,0,0,.19);
 }
+
+.shortSelect{
+    background:#fafdfe;
+    height:28px;
+    width:180px;
+    line-height:28px;
+    border:1px solid #9bc0dd;
+    -moz-border-radius:2px;
+    -webkit-border-radius:2px;
+    border-radius:2px;
+}
+
+.Title{
+    color:black;
+    font-size:20px;
+    font-weight:bold;
+}
+
+.Result{
+    color:black;
+    font-size:30px;
+    font-weight:bold;
+}
+
 </style>
 </head>
 <body>
-<h3>薪资预测</h3>
+<p class="Title">薪资预测</p>
     <div class="all">
 
     <div class="input-group">
+    <label class="label">&emsp;方向&emsp;&emsp;</label>
+    <select name="bbxb" id="s" class="shortSelect" onchange="change1(event.srcElement.value)">
+      {%for list in list%}
+        <option :value="list">{{ list }}</option>
+      {% endfor %}
+    </select>
+    <div></div></div><br>
+
+    <div class="input-group">
     <label class="label">&emsp;城市&emsp;&emsp;</label>
-    <input autocomplete="off" name="city" id="city" class="input">
+    <select name="bbxb" id="s1" class="shortSelect" onchange="change2(event.srcElement.value)">
+      {%for list in list1%}
+        <option :value="list">{{ list }}</option>
+      {% endfor %}
+    </select>
     <div></div></div><br>
 
     <div class="input-group">
-    <label class="label">经验要求&emsp;</label>
-    <input autocomplete="off" name="experience_require" id="experience_require" class="input">
+    <label class="label">工作经验&emsp;</label>
+    <select name="bbxb" id="s2" class="shortSelect" onchange="change3(event.srcElement.value)">
+      {%for list in list2%}
+        <option :value="list">{{ list }}</option>
+      {% endfor %}
+    </select>
     <div></div></div><br>
 
     <div class="input-group">
-    <label class="label">学历要求&emsp;</label>
-    <input autocomplete="off" name="education_require" id="education_require" class="input">
+    <label class="label">&emsp;学历&emsp;&emsp;</label>
+    <select name="bbxb" id="s3" class="shortSelect" onchange="change4(event.srcElement.value)">
+      {%for list in list3%}
+        <option :value="list">{{ list }}</option>
+      {% endfor %}
+    </select>
     <div></div></div><br>
 
     <div class="input-group">
     <label class="label">公司规模&emsp;</label>
-    <input autocomplete="off" name="cop_scale" id="cop_scale" class="input">
+    <select name="bbxb" id="s4" class="shortSelect" onchange="change5(event.srcElement.value)">
+      {%for list in list4%}
+        <option :value="list">{{ list }}</option>
+      {% endfor %}
+    </select>
     <div></div></div>
 
-        <br><br>
+    <br><br>
 
-    <div>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<button class="Button">预测薪资</button></div>
+    <div>&emsp;&emsp;&emsp;&emsp;&emsp;
+        <button class="Button" onclick="predict()">预测薪资</button>
+    </div>
 
         <br><br><br>
 
-    <div>&emsp;&emsp;&emsp;&emsp;预测薪资为</div>
+    <div id="result" style="display:none;" class="Result"></div>
 
     </div>
 </body>
+
+
+<script>
+    var direction='PHP'
+    var city='北京'
+    var experience='无需经验'
+    var degree='不限'
+    var scale='不限'
+
+    function change1(n){
+        direction=n
+    }
+    function change2(n){
+        city=n
+    }
+    function change3(n){
+        experience=n
+    }
+    function change4(n){
+        degree=n
+    }
+    function change5(n){
+        scale=n
+    }
+
+    function predict(){
+    $.ajax({
+            type: "get",
+            url: "http://127.0.0.1/salary_forecast2?direction="+direction+"&city="+city+"&experience="+experience+"&degree="+degree+"&scale="+scale,
+            success(data) {
+                // data为返回值
+                // 成功后的回调方法
+                showResult(data)
+            }
+        })
+    }
+
+    function showResult(n){
+        n=parseFloat(n).toFixed(2);
+        var Div = document.getElementById("result");
+        if (Div.style.display === "none") {
+            Div.style.display = "block";
+            Div.innerText="预测薪资为"+n+"万元/月";
+        }
+        if (Div.style.display === "block") {
+            Div.innerText="预测薪资为"+n+"万元/月";
+        }
+    }
+
+</script>
 
 </html>

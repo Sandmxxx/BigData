@@ -28,7 +28,7 @@
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                <div class="sidebar-brand-text mx-3">Python数据分析</div>
+                <div class="sidebar-brand-text mx-3">招聘数据分析</div>
             </a>
 
             <!-- Divider -->
@@ -96,7 +96,7 @@
 
             <!-- Nav Item - 薪资预测 -->
             <li class="nav-item active">
-                <a class="nav-link"><span onclick="change('salary_forecast')">薪资预测</span></a>
+                <a class="nav-link"><span onclick="change1('salary_forecast1')">薪资预测</span></a>
             </li>
 
             <!-- Divider -->
@@ -112,7 +112,7 @@
 
                 <!-- Topbar -->
                 <nav class="sticky-footer bg-white">
-                    <div class="copyright text-center my-auto" >
+                    <div class="copyright text-center my-auto" id="topBar">
                         <span>
                             以
                             <select onchange="testAjax(event.srcElement.value)">
@@ -151,6 +151,15 @@
     function change(n){
         document.getElementById("frame1").src="http://127.0.0.1/"+n;
         chart_type=n;
+        var t = document.getElementById('topBar');
+        t. hidden = false;
+    }
+
+    function change1(n){
+        document.getElementById("frame1").src="http://127.0.0.1/"+n;
+        chart_type=n;
+        var t = document.getElementById('topBar');
+        t. hidden = true;
     }
 
     function testAjax(jobName) {

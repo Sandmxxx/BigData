@@ -33,6 +33,11 @@ company_size_code = {
     '5000-10000人': 7, '10000人以上': 8
 }
 
+# 字典转列表
+def toList(mapp):
+    list=mapp.keys()
+    print(list)
+    return list
 
 # 根据爬取的招聘信息，进行薪资预测
 def get_salary_forecast_model(df):
@@ -86,9 +91,9 @@ def get_salary_forecast_model(df):
     # mse_randomForest = mean_squared_error(y_test, y_pred_randomForest)
     # print("Random Forest - R²: {:.2f}, MSE: {:.2f}".format(r2_randomForest, mse_randomForest))
 
-def salary_forecast(jobName,city,experience,degree,company_size):
-    client = pymongo.MongoClient('localhost', 27017)
-    db = client['jobdb']
+def salary_forecast(db,jobName,city,experience,degree,company_size):
+    # client = pymongo.MongoClient('localhost', 27017)
+    # db = client['jobdb']
     df = getAllData(db,jobName)
     linReg = get_salary_forecast_model(df)
     salary = linReg.predict([[citys_code[city], experience_code[experience], degree_code[degree], company_size_code[company_size]]])
@@ -96,4 +101,5 @@ def salary_forecast(jobName,city,experience,degree,company_size):
     return salary
 
 if __name__ == '__main__':
-    salary_forecast('Java', '北京', '3年', '本科', '50-100人')
+    toList(company_size_code)
+    # salary_forecast('Java', '北京', '3年', '本科', '50-100人')
