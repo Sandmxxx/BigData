@@ -22,7 +22,6 @@ def save(db,jobName,dataList):
 
     print("数据插入成功")
 
-
 def delRepeatData(db):
     for jobName in db.list_collection_names():
         collection = db[jobName]
@@ -152,8 +151,12 @@ def unify_experience(db):
             collection.update_one({'_id': doc['_id']}, {'$set': {'经验要求': experience2}})
         print(jobName +'经验要求统一完成')
 
-
-
+def clean_data(db):
+    delRepeatData(db)
+    unify_experience(db)
+    for jobName in db.list_collection_names():
+        unify_salary(db,jobName)
+    print('数据清洗完成')
 
 def get_city_count_map(db,jobName):
     """
@@ -529,3 +532,7 @@ def get_cop_industry(db,jobName):
             i=i+1
     return cop_industry
 
+if __name__ == '__main__':
+    client = pymongo.MongoClient(host='localhost', port=27017)
+    db = client['jobdb']
+    clean_data(db)

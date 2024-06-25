@@ -11,7 +11,7 @@ from bs4 import BeautifulSoup
 
 import pandas as pd
 from playwright.sync_api import sync_playwright  # 同步模式
-from retrying import retry
+# from retrying import retry
 import requests
 import execjs
 
@@ -361,9 +361,7 @@ if __name__ == '__main__':
     #         'Android','iOS','小程序开发','JavaScript','Vue','Unity',
     # '软件测试','网络安全','算法','人工智能','大数据','全栈','嵌入式'
     job_list = [
-        'java', 'C++', 'PHP', 'Python', 'C#', '.NET', 'Golang', 'Node.js', 'Sql',
-        'Android', 'iOS', '小程序开发', 'JavaScript','Vue', 'Unity',
-        '软件测试', '网络安全', '算法', '人工智能', '大数据', '全栈', '嵌入式'
+        '大数据', '全栈', '嵌入式'
     ]
     client = pymongo.MongoClient('localhost', 27017)
     db = client['jobdb']
