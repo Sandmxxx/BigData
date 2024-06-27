@@ -34,21 +34,39 @@ columns = ['岗位名称', '城市', "薪资", "发布时间", "经验要求", '
 
 Cookie1 = 'tfstk=fUmSKaZmY_f5PHc11zp4c2GnYzZe3XtaJ9wKIvIPpuEJRXGIKyQ8y2lQRSG3azr8a9sIGYlEzvk-RWHUi8Q89yIYM8yQeynUTD9QqmuPY7RuAvhafCRwbhkoEuqp_CrjgTCQvJKU9GQ_99q3vCR2bhkoEkcZw-OkPxpbURyLvzIRkKw_LkI8JgQAMS2LvWhLJSIYKRPdJzEdMUoHG-Y7wYOF4c_LtnJSFSsdfx28kx-gGMKrc81a6YBAvMnbFzmEo4rUjzuKIPmrhHs04AgYDJiHBwNQ52nzD0dvXr4KRXemoB_Q12HrS-n9LNVqc7lKVrpNfyrxbPE-uEAz8uwL2P0DKaPKJAi_4bRcv7usHjaZ0sSaXVcjAPEO4ssa1UahRwVRv-_khK_h8ct4b-jQHSv7y-2qbK9fNwfGvM7mYK_dzze03XpXh_1C.; NSC_ohjoy-bmjzvo-200-159=ffffffffc3a0d61645525d5f4f58455e445a4a…=uqTYYC/heN313BHLKBcpE4VSnTYlE7qpk7t=q44XmNw5nEUvcm4z81beVbW2U5WRwEmhjiYbFGNDRQDx4g2eDA7IRezA7j2DK+aI43UmzW7/lhQFDjfDBf0uixQi0YgwbibteA7GmTBHLK01m5N5Wx5D=1oqoqxnBtt9qDwtjFTFGPdqFWhSi2zzG5LuDt9e3B46TNLwnAb/F427nb7IOfq=OES0b7PTbUKaRwwiYuiBCWyz+LL3uL3xDKqKjDDLxD23ldoG3eD===; Hm_lvt_1370a11171bd6f2d9b1fe98951541941=1713862599,1713869135; acw_tc=ac11000117138691338915890e00dea35977a83bc06e50a21ad53a8f5612a8; acw_sc__v3=662791505f087a925f6a36f5a734bf72eb815d0b; Hm_lpvt_1370a11171bd6f2d9b1fe98951541941=1713869135'
 Cookie2 = 'guid=7b4ff9b4d9a113f6cc0b32de6b2cbf3b; sajssdk_2015_cross_new_user=1; Hm_lvt_1370a11171bd6f2d9b1fe98951541941=1714226436; Hm_lpvt_1370a11171bd6f2d9b1fe98951541941=1714226436; acw_tc=ac11000117142264407372112e7fdd2be7a4bcad4e1865d36d3f54c0e4af71; sensorsdata2015jssdkcross=%7B%22distinct_id%22%3A%227b4ff9b4d9a113f6cc0b32de6b2cbf3b%22%2C%22first_id%22%3A%2218f1fdb92e913b5-01047eb3602634f-26001d51-1327104-18f1fdb92ea10c6%22%2C%22props%22%3A%7B%22%24latest_traffic_source_type%22%3A%22%E7%9B%B4%E6%8E%A5%E6%B5%81%E9%87%8F%22%2C%22%24latest_search_keyword%22%3A%22%E6%9C%AA%E5%8F%96%E5%88%B0%E5%80%BC_%E7%9B%B4%E6%8E%A5%E6%89%93%E5%BC%80%22%2C%22%24latest_referrer%22%3A%22%22%7D%2C%22identities%22%3A%22eyIkaWRlbnRpdHlfY29va2llX2lkIjoiMThmMWZkYjkyZTkxM2I1LTAxMDQ3ZWIzNjAyNjM0Zi0yNjAwMWQ1MS0xMzI3MTA0LTE4ZjFmZGI5MmVhMTBjNiIsIiRpZGVudGl0eV9sb2dpbl9pZCI6IjdiNGZmOWI0ZDlhMTEzZjZjYzBiMzJkZTZiMmNiZjNiIn0%3D%22%2C%22history_login_id%22%3A%7B%22name%22%3A%22%24identity_login_id%22%2C%22value%22%3A%227b4ff9b4d9a113f6cc0b32de6b2cbf3b%22%7D%2C%22%24device_id%22%3A%2218f1fdb92e913b5-01047eb3602634f-26001d51-1327104-18f1fdb92ea10c6%22%7D; acw_sc__v2=662d050c1301b8e9af82acfbe3b4a375db1fbf30; nsearch=jobarea%3D%26%7C%26ord_field%3D%26%7C%26recentSearch0%3D%26%7C%26recentSearch1%3D%26%7C%26recentSearch2%3D%26%7C%26recentSearch3%3D%26%7C%26recentSearch4%3D%26%7C%26collapse_expansion%3D; search=jobarea%7E%60%7C%21recentSearch0%7E%60000000%A1%FB%A1%FA000000%A1%FB%A1%FA0000%A1%FB%A1%FA00%A1%FB%A1%FA99%A1%FB%A1%FA%A1%FB%A1%FA99%A1%FB%A1%FA99%A1%FB%A1%FA99%A1%FB%A1%FA99%A1%FB%A1%FA9%A1%FB%A1%FA99%A1%FB%A1%FA%A1%FB%A1%FA0%A1%FB%A1%FAjava%A1%FB%A1%FA2%A1%FB%A1%FA1%7C%21; JSESSIONID=3D7370D27D698C11A59F32DC5E62DEE3; ssxmod_itna=iqrtLG7i0LoOo0=dGQaG=qi=D70PPrkrDlpi4A5D8D6DQeGTQ6qDBn2WcagOdaRqGOKoeTok8t62BoPpSDpxrDHxY=DUoj4qkQDeWQD5xGoDPxDeDADYojDAqiOD7qDdA1dsU8DbxYPlDitLD7U/DeDj+q=24eG0DDUaj4G2YC6tDDXtBjw4/4xDxGYL4Qt3sTYrTYxnD0t4xBL=+6qnGWF8MBtrapaV3rQDzT7DtkUP1wbDCO6lAuN1KAm3KGhCf0L=trAejgGtQR8hS7Dt6ODoeRL4Bom4mDwYUz/tDDfPANxxD===; ssxmod_itna2=iqrtLG7i0LoOo0=dGQaG=qi=D70PPrkD6r+xGqDsAoDLG3gIf4nRdIMG1pkhkpt9z=DBiHklEfAmma3jha5GUbnERUETTASy6HbWpBc=IjC1kSf+c/PI1UaZU=weG2e47=D+crD=; tfstk=f3JSO-9G-z45IK-f-_nVhYgN_JXCOUMaAkspjHezvTB8JJ_ffgKFUXAfRELfywuleweB8HJy8pt3dMKp-0bEqj-kq9XK7VJIQ3xlSeS3aqWKvnUhFr-jQA-k2Mb2omDZxKwl_wbdp_C8MrQcYwIJJ_CADZjhvzILemtAoMBLe6F8krIdV8ERpb3Elic5y3gUiOh0VAbk2Zw6mKsRO7xRlJephI1PW-7bpJpfVnXWcNwsTNdGz17Mkxy5dnIBl1RS58TBvhAdGpa-4FKprK6lCXol1Id2__OjyJ_2UM1OpsZLpn6pw6pCBAUf'
-# 这个装饰器的作用就是在滑块失败的时候可以重复滑动
+
 def getBaseInfoHtml(url):
-    global Cookie2
+    """
+    获取基础信息的HTML内容。
+
+    参数:
+    url (str): 需要抓取的网页URL。
+
+    返回:
+    dict 或 False: 如果成功解析出所需信息，则返回解析后的字典；否则返回False。
+    """
+    # 检查URL是否属于51job.com，如果不是则直接返回
     if 'we.51job.com' not in url:
         return
     """处理滑块"""
+    # 使用sync_playwright启动Firefox浏览器，并进行无头设置
     with sync_playwright() as fp:
-        bs = fp.firefox.launch(headless=True)  # 禁用无头模式(也就是启动不启动浏览器的区别)
-        page = bs.new_page()  # 新建选项卡
-        page.goto(url)  # 加载页面
+        # 启动Firefox浏览器
+        bs = fp.firefox.launch(headless=True)
+        # 新建页面（标签）
+        page = bs.new_page()
+        # 导航到指定URL
+        page.goto(url)
+        # 检查是否需要滑动验证
         if page.locator('#nc_1_n1z').is_visible():
+            # 获取滑动按钮的边界框
             dropbutton = page.locator('#nc_1_n1z')
-            box = dropbutton.bounding_box()  # 获取其边界框
+            box = dropbutton.bounding_box()
+            # 模拟鼠标移动到滑动按钮中心
             page.mouse.move(box['x'] + box['width'] / 2, box['y'] + box['height'] / 2)
+            # 模拟鼠标按下
             page.mouse.down()
+            # 模拟滑动过程
             # 模拟人类的鼠标移动轨迹
             steps = 15  # 可以根据需要调整步数
             for step in range(1, steps + 1):
@@ -57,21 +75,12 @@ def getBaseInfoHtml(url):
                 mov_y = box['y'] + box['height'] / 2 + random.uniform(-5, 5)
                 page.mouse.move(mov_x, mov_y)
                 time.sleep(random.uniform(0.001, 0.003))  # 模拟人的自然反应时间
+            # 模拟鼠标释放
             page.mouse.up()
+            # 等待页面加载完成
             # 等待加载新页面
             page.wait_for_load_state()
-
-        # 获取当前页面的Cookie
-        # cookies = page.context.cookies(page.url)
-        # i = 1
-        # for cookie in cookies:
-        #     print(cookie)
-        #     if i == 1:
-        #         Cookie2 = cookie['name'] + '=' + cookie['value']
-        #         i = 0
-        #     else:
-        #         Cookie2 = Cookie1 + '; ' + cookie['name'] + '=' + cookie['value']
-
+        # 尝试获取并解析HTML内容中包含的结果
         html = page.locator('xpath=/html/body/pre')
         qwer = html.inner_text()
         if 'resultbody' in qwer:
@@ -79,6 +88,7 @@ def getBaseInfoHtml(url):
             return a
         else:
             return False
+
 
 def get_sign(url):
     key = 'abfc8f9dcf8c3f3d8aa294ac5f2cf2cc7767e5592590f39c3f503271dd68562b'
@@ -308,6 +318,7 @@ def parseDataFields(i):
     """解析数据"""
     jobName = i['jobName']  # 岗位名称
     jobAreaString = i['jobAreaString']  # 城市
+    # 只保留城市名称，不保留区域信息
     for city in citys_code_map.keys():
         if city in jobAreaString:
             jobAreaString = city
@@ -323,11 +334,7 @@ def parseDataFields(i):
     companyIndustryType1Str = ''
     if 'companyIndustryType1Str' in i.keys():
         companyIndustryType1Str = i['companyIndustryType1Str'] # 工业类型
-    # lon = i['lon']  # 纬度
-    # lat = i['lat']  # 精度
     jobHref = i['jobHref']  # 岗位链接
-    # companyHref = i['companyHref']  # 公司链接
-    # jobWelfare,jobKeyWords = getJobKeyWords2(jobHref)
     jobWelfareCodeDataList = i['jobWelfareCodeDataList'] # 工作福利
     jobWelfare = ""
     # 如果列表不为空，遍历获取每个福利合成一个字符串
@@ -340,28 +347,26 @@ def parseDataFields(i):
             else:
                 jobWelfare += '/' + j['chineseTitle']
 
-
+    # 将解析后的字段值组合成列表
     s = [jobName, jobAreaString, provideSalaryString, issueDateString, workYearString, degreeString,companyName,companyTypeString,
          companySizeString, companyIndustryType1Str, jobHref, jobWelfare]
-
+    # 创建一个空的文档字典，用于存储规范化后的数据
     document = {}
+    # 将字段列表s中的值，按照columns定义的顺序，填充到document字典中
     for i in range(len(columns)):
         document[columns[i]] = s[i]
-
+    # 返回规范化后的文档字典
     return document
 
-
-if __name__ == '__main__':
+def spider():
     # 获取当前时间的时间戳（秒）
     timestamp = int(time.time())
     # 将时间戳转换为指定格式的字符串
     formatted_timestamp = "{:06d}".format(timestamp)
-    # jobName = input("请输入岗位:")
-    # 'Java','C++','PHP','Python','C#','Golang','Node.js','Sql'
-    #         'Android','iOS','小程序开发','JavaScript','Vue','Unity',
-    # '软件测试','网络安全','算法','人工智能','大数据','全栈','嵌入式'
     job_list = [
-        '大数据', '全栈', '嵌入式'
+        'Java', 'C++', 'PHP', 'Python', 'C#', 'Golang', 'Node.js', 'Sql',
+        'Android', 'iOS', '小程序开发', 'JavaScript', 'Vue', 'Unity',
+        '软件测试', '网络安全', '算法', '人工智能', '大数据', '全栈', '嵌入式'
     ]
     client = pymongo.MongoClient('localhost', 27017)
     db = client['jobdb']
@@ -371,10 +376,11 @@ if __name__ == '__main__':
             for page in range(1, 6):
                 print('正在爬取  ' + city + '  的  ' + jobName + '  的第  ' + str(page) + '  页岗位信息')
                 """直接把全量的500条作为一次数据接口了"""
-                url = (f'https://we.51job.com/api/job/search-pc?api_key=51job&timestamp={formatted_timestamp}&keyword={jobName}'
-                       f'&searchType=2&function=&industry=&jobArea={code}&jobArea2=&landmark=&metro=&salary=&workYear=&degree=&'
-                       f'companyType=&companySize=&jobType=&issueDate=&sortType=3&pageNum=1&requestId=71bfbc17ec519737773f2b7e039f1d27'
-                       f'&pageSize=200&source=1&accountId=&pageCode=sou%7Csou%7Csoulb')
+                url = (
+                    f'https://we.51job.com/api/job/search-pc?api_key=51job&timestamp={formatted_timestamp}&keyword={jobName}'
+                    f'&searchType=2&function=&industry=&jobArea={code}&jobArea2=&landmark=&metro=&salary=&workYear=&degree=&'
+                    f'companyType=&companySize=&jobType=&issueDate=&sortType=3&pageNum=1&requestId=71bfbc17ec519737773f2b7e039f1d27'
+                    f'&pageSize=200&source=1&accountId=&pageCode=sou%7Csou%7Csoulb')
                 html = getBaseInfoHtml(url)
                 dataList = []
                 bba = html['resultbody']['job']['items']
@@ -382,7 +388,8 @@ if __name__ == '__main__':
                     data = parseDataFields(i)
                     print(data)
                     dataList.append(data)
-                save(db,jobName, dataList)
+                save(db, jobName, dataList)
+                # 如果没有数据，则再次请求
                 if len(dataList) == 0:
                     html = getBaseInfoHtml(url)
                     dataList = []
@@ -397,7 +404,6 @@ if __name__ == '__main__':
                     break
                 # time.sleep(random.uniform(5, 10))
     client.close()
-# if __name__ == '__main__':
-#     c,b = getJobKeyWords2('https://jobs.51job.com/shenzhen-nsq/154253911.html?s=sou_sou_soulb&t=0_0&req=71bfbc17ec519737773f2b7e039f1d27')
-#     print(c)
-#     print(b)
+
+if __name__ == '__main__':
+    spider()

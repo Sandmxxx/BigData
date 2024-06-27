@@ -53,18 +53,13 @@ def get_salary_forecast_model(df):
     XX = XX.dropna()
     XX.reset_index(drop=True, inplace=True)
     X = XX[['城市', '经验要求', '学历要求', '公司规模']]
-    print(X)
-
     y = XX['薪资']
-    print(y)
     # 模型训练
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
     linReg = LinearRegression()
     linReg.fit(X_train, y_train)
     print('线性回归模型训练完成')
     # 模型评估
-    print('模型评估：', linReg.score(X_test, y_test))
-    # print('模型预测：', model.predict([[1, 3, 2, 8]]))
     y_pred_linReg = linReg.predict(X_test)
     r2_linReg = r2_score(y_test, y_pred_linReg)
     mse_linReg = mean_squared_error(y_test, y_pred_linReg)
@@ -101,5 +96,6 @@ def salary_forecast(db,jobName,city,experience,degree,company_size):
     return salary
 
 if __name__ == '__main__':
-    toList(company_size_code)
-    # salary_forecast('Java', '北京', '3年', '本科', '50-100人')
+    client = pymongo.MongoClient(host='localhost', port=27017)
+    db = client['jobdb']
+    salary_forecast(db,'Java', '北京', '3年', '本科', '50-100人')

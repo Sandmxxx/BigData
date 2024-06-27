@@ -194,13 +194,9 @@ def get_city_count_map(db,jobName):
 
 #城市招聘词云
 def get_city_word(db,jobName):
-    """
-    城市招聘词云
-    """
     collection = db[jobName]
     # 初始化城市数量字典
     city_word_map = []
-
     # 聚合操作，按城市分组统计职位数量
     result = collection.aggregate([
         {
@@ -213,35 +209,57 @@ def get_city_word(db,jobName):
             '$sort': {'count': -1}  # 按计数值降序排序结果
         }
     ])
-
     # 遍历结果，填充城市数量字典
     for doc in result:
         city_word_map.append((doc['_id'],doc['count']))
     return city_word_map
 
 #主要城市薪资关系
-def get_primary_city_salary(db,jobName):
+def get_primary_city_salary(db, jobName):
+    """
+    获取主要城市某个职位的平均薪资。
+
+    通过聚合框架查询数据库中特定职位的平均薪资，并仅返回前10个主要城市的数据。
+
+    参数:
+    - db: 数据库对象，用于访问数据。
+    - jobName: 字符串，表示职位名称，用于查询特定职位的数据。
+
+    返回:
+    - 一个字典，包含前10个主要城市及其对应职位的平均薪资，薪资保留两位小数。
+    """
+    # 根据职位名称获取对应的集合
     collection = db[jobName]
+
+    # 使用聚合框架进行数据处理
     result = collection.aggregate([
         {
             '$group': {
-                '_id': '$城市',  # 以经验字段作为分组依据
-                'avg_salary': {'$avg': '$薪资'}  # 计算每组的文档数
+                '_id': '$城市',  # 以城市字段作为分组依据
+                'avg_salary': {'$avg': '$薪资'}  # 计算每个城市的平均薪资
             }
         },
         {
-            '$sort': {'avg_salary': -1}  # 按计数值升序排序结果
+            '$sort': {'avg_salary': -1}  # 按平均薪资降序排序
         }
     ])
 
+    # 初始化用于存储结果的字典
     primary_city_salary = {}
-    i=0
+    # 初始化计数器
+    i = 0
+    # 遍历聚合结果，提取前10个主要城市的平均薪资
     for doc in result:
-        if i>9:break
+        # 限制只处理前10个城市的数据
+        if i > 9:
+            break
+        # 忽略城市字段为空的数据
         if doc['_id'] != '':
-            i=i+1
-            primary_city_salary[doc['_id']] = round(doc['avg_salary'],2)
+            i += 1
+            # 将城市名称和平均薪资（保留两位小数）添加到结果字典中
+            primary_city_salary[doc['_id']] = round(doc['avg_salary'], 2)
     return primary_city_salary
+
 
 def get_company_type_count_dict(db,jobName):
     collection = db[jobName]
@@ -356,7 +374,7 @@ def get_salary_with_company_size_relation(db,jobName):
                 '_id': '$公司规模',  # 以经验字段作为分组依据
                 'avg_salary': {'$avg': '$薪资'}  # 计算每组的文档数
             }
-        },
+        }
         # {
         #     '$sort': {'avg_salary': -1}  # 按计数值降序排序结果
         # }
@@ -450,9 +468,7 @@ def get_education_requirements(db,jobName):
 def get_job_name(db):
     job_name_list = db.list_collection_names()
     return job_name_list
-# if __name__ == '__main__':
-#     # test()
-#     delRepeatData()
+
 
 def getAllData(db,jobName):
     # 获取所有数据到Pandas的DataFrame
@@ -478,9 +494,6 @@ def delBadData(db,jobName):
     print(f"Deleted {result1.deleted_count} documents with '·' in the city field.")
     print(f"Deleted {result2.deleted_count} documents with non-double values in the salary field.")
     # 删除数据库中薪资不是double类型的数据
-
-
-
 
 
 #公司规模

@@ -35,7 +35,7 @@ def list_job():
     return render_template("index.html",list=job_name_list)
 
 #初始职业类型
-jobName="PHP"
+jobName="Java"
 
 @app.route("/job_type")
 def get_job_name():
@@ -90,9 +90,9 @@ def salary_city():
     c = (
         Bar(opts.InitOpts(width='1400px'))
         .add_xaxis(xaxis_data=x)
-        .add_yaxis("主要城市薪资关系", dt, color='LightCoral')
+        .add_yaxis("薪资前十城市", dt, color='LightCoral')
         .set_global_opts(
-            title_opts=opts.TitleOpts(title="主要城市薪资关系"),
+            title_opts=opts.TitleOpts(title="薪资前十城市"),
             yaxis_opts=opts.AxisOpts(name="薪资：万元/月"),
         )
         .render("templates/主要城市薪资关系.html")
